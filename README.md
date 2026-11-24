@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TWTodos
 
-## Getting Started
+Aplicação de lista de tarefas feita com Next.js e Tailwind CSS.
 
-First, run the development server:
+## Desenvolvimento local
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Desenvolvimento com Docker
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para executar em um container enquanto edita os arquivos no host, use:
 
-## Learn More
+```bash
+docker compose -f compose.dev.yaml up --build
+```
 
-To learn more about Next.js, take a look at the following resources:
+O código do projeto é montado no container e o Next.js verifica alterações a cada segundo para contornar eventos de arquivo que o Docker Desktop pode não propagar do Windows. As alterações são refletidas com Fast Refresh. A aplicação ficará disponível em [http://localhost:3000](http://localhost:3000). Encerre com `Ctrl+C`; para remover o container e os volumes de dependências/cache, execute `docker compose -f compose.dev.yaml down -v`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Produção com Docker
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Com Docker e Docker Compose instalados, construa a imagem e inicie a aplicação com um único comando:
 
-## Deploy on Vercel
+```bash
+docker compose up --build -d
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A aplicação ficará disponível em [http://localhost:3000](http://localhost:3000). No PowerShell, para escolher outra porta no host, execute `$env:PORT=8080; docker compose up --build -d`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Para interromper e remover o container, execute:
+
+```bash
+docker compose down
+```

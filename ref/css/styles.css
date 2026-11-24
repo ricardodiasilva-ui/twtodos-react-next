@@ -1,0 +1,17 @@
+body {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.app-shell {
+  max-width: 760px;
+}
+
+#task-list .list-group-item {
+  padding: 1rem 0;
+}
+
+.task-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
